@@ -1,13 +1,11 @@
 from tkinter import *
-import requests
 import time
 from random import choice
-from timer import Stopwatch
 
 
 class TypingSpeedTest:
-    def __init__(self, window):
-        self.window = window
+    def __init__(self, root):
+        self.window = root
         self.window.title('Typing Speed')
         self.bg_col = '#DAF7A6'
         self.window.config(height=800, width=800, pady=15, padx=15, bg=self.bg_col)
@@ -21,19 +19,19 @@ class TypingSpeedTest:
         self.sample_text = choice(self.typing_test_texts)
         self.start_time = None
         # ---------------------Labels---------------------------------------------#
-        self.title = Label(window, text='Typing Speed test', fg='Black', bg=self.bg_col, font=("Aerial", 40, "bold"))
+        self.title = Label(root, text='Typing Speed test', fg='Black', bg=self.bg_col, font=("Aerial", 40, "bold"))
         self.title.grid(row=0, column=1, columnspan=3)
-        self.sample_text_label = Label(window, text=self.sample_text, fg='Black', bg=self.bg_col, wraplength=650,
+        self.sample_text_label = Label(root, text=self.sample_text, fg='Black', bg=self.bg_col, wraplength=650,
                                        font=("Aerial", 10))
         self.sample_text_label.grid(row=2, column=1, columnspan=3)
-        self.result_label = Label(window, text='', font=("Aerial", 14), bg=self.bg_col)
+        self.result_label = Label(root, text='', font=("Aerial", 14), bg=self.bg_col)
         self.result_label.grid(columnspan=3, row=5, column=1)
         # ---------------------Text Entry-----------------------------------------#
-        self.user_entry = Text(window, height=10, width=60, wrap=WORD)
+        self.user_entry = Text(root, height=10, width=60, wrap=WORD)
         self.user_entry.grid(column=1, row=3, columnspan=3)
         self.user_entry.bind("<Return>", self.calculate_speed)
         # ---------------------Buttons---------------------------------------------#
-        self.start_button = Button(window, text='Start Typing', font=("Aerial", 15), command=self.start_test)
+        self.start_button = Button(root, text='Start Typing', font=("Aerial", 15), command=self.start_test)
         self.start_button.grid(column=1, row=4, columnspan=3)
 
     def start_test(self):
